@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>FaoCAS</Name>
+    <Version>2.0</Version>
+    <Title>FaoCAS Installer</Title>
+    <Publisher>FAO</Publisher>
+    <StartMenuDir>FAO</StartMenuDir>
+    <TargetDir>@RootDir@FAO</TargetDir>
+</Installer>
