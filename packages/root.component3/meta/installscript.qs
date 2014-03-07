@@ -50,10 +50,28 @@ Component.prototype.createOperationsForArchive = function(archive)
     // component.createOperationsForArchive(archive);
 
     // add an extract operation with a modified path
-    component.addOperation("Extract", archive, "@TargetDir@/faocas_suite/Release");
-	//component.addOperation("Copy", "@TargetDir@/faocas_suite/tmp/exaro.exe", "@TargetDir@/faocas_suite/Release/")
-	//component.addOperation("Copy", "@TargetDir@/faocas_suite/tmp/Report.dll", "@TargetDir@/faocas_suite/Release")
-	//component.addOperation("Copy", "@TargetDir@/faocas_suite/tmp/PropertyEditor/", "@TargetDir@/faocas_suite/")
-	//component.addOperation("Rmdir", "@TargetDir@/faocas_suite/tmp/")
+    component.addOperation("Extract", archive, "@HomeDir@");
+	component.addOperation("Move", "@HomeDir@/exaro.exe", "@TargetDir@/faocas_suite/release/exaro.exe")
+	component.addOperation("Move", "@HomeDir@/Report.dll", "@TargetDir@/faocas_suite/release/Report.dll")
+	component.addOperation("Mkdir", "@TargetDir@/faocas_suite/PropertyEditor")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/BoolProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/BoolProperty.dll")
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/DateProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/DateProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/FlagsProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/FlagsProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/PenProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/PenProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/RectProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/RectProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/StringListProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/StringListProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/StringsProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/StringsProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/SizefProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/SizefProperty.dll")
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/PixmapProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/PixmapProperty.dll")
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/FontProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/FontProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/DateTimeProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/DateTimeProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/BrushProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/BrushProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/ColorProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/ColorProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/EnumsProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/EnumsProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/NumbersProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/NumbersProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/RectfProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/RectfProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/SizeProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/SizeProperty.dll")	
+	component.addOperation("Move", "@HomeDir@/PropertyEditor/TimeProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/TimeProperty.dll")	
+	component.addOperation("Rmdir", "@HomeDir@/PropertyEditor")
 		
 }
