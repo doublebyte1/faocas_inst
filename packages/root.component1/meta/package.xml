@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>PostgreSQL</DisplayName>
+    <Description>Install the PostgreSQL Database Management System.</Description>
+    <Version>9.3</Version>
+    <ReleaseDate>2014-03-06</ReleaseDate>
+    <Name>root.component1</Name>
+    <Licenses>
+        <License name="PostgreSQL License" file="license.txt" />
+    </Licenses>
+    <Translations>
+        <Translation>de_de.qm</Translation>
+    </Translations>
+    <Default>script</Default>
+    <Script>installscript.qs</Script>
+    <ForcedInstallation>true</ForcedInstallation>	
+</Package>
