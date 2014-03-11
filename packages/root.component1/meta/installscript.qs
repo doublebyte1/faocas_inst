@@ -52,16 +52,20 @@ Component.prototype.createOperationsForArchive = function(archive)
     // add an extract operation with a modified path
     component.addOperation("Extract", archive, "@TargetDir@");
 	component.addOperation("Mkdir", "@TargetDir@/postgreSQL/9.3/data")
-	component.addOperation("Execute", ["@TargetDir@/postgreSQL/9.3/bin/initdb.exe", "-D", "@TargetDir@/postgreSQL/9.3/data", "-E", "UTF8", "--locale=en_US.UTF-8"])
-	if (installer.value("os") == "win"){
-		component.addElevatedOperation("Execute", ["{0,1}", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o", "\"-p 9001\"", "register", "-S", "auto", "-D", "@TargetDir@/postgreSQL/9.3/data", "UNDOEXECUTE", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o", "\"-p 9001\"", "unregister", "-S", "auto", "-D", "@TargetDir@/postgreSQL/9.3/data", "errormessage=Could not register/unregister PostgreSQL service!"])
-	}
-	component.addOperation("Execute", ["{0,1}", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o", "\"-p 9001\"", "start", "-D", "@TargetDir@/postgreSQL/9.3/data", "UNDOEXECUTE", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o","\"-p 9001\"", "stop", "-D", "@TargetDir@/postgreSQL/9.3/data","errormessage=Could not start/stop PostgreSQL server!"])
-	component.addOperation("Execute", "@TargetDir@/postgreSQL/9.3/bin/createuser.exe", "-s", "-p", "9001", "postgres")
-	//component.addOperation("Execute", "@TargetDir@/postgreSQL/9.3/bin/psql.exe", "-c", "\"alter role postgres with superuser\"", "-p", "9001", "postgres")
-	//component.addOperation("Execute", "@TargetDir@/postgreSQL/9.3/bin/psql.exe", "-c", "\"alter role postgres with password 'test123'\"", "-p", "9001", "postgres")
-	component.addOperation("Execute", "@TargetDir@/postgreSQL/9.3/bin/createdb.exe", "-p", "9001", "-O", "postgres", "-E", "UTF8", "-T", "template0", "faocasdata")
+	component.addOperation("Execute", ["@TargetDir@/postgreSQL/9.3/bin/initdb.exe", "-D", "@TargetDir@/postgreSQL/9.3/data", "-E", "UTF8", "--locale=en_US.UTF-8", "-U", "postgres", "-A", "md5", "--pwfile=@TargetDir@/postgreSQL/9.3/pass.txt"])		
+
+if (installer.value("os") == "win"){
+	component.addElevatedOperation("Execute", ["@TargetDir@/postgreSQL/9.3/create_service.bat", "@TargetDir@/postgreSQL/9.3/data", "@TargetDir@/postgreSQL/9.3/bin/", "UNDOEXECUTE", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o", "\"-p 9001\"", "unregister", "-S", "auto", "-D", "@TargetDir@/postgreSQL/9.3/data", "errormessage=Could not register/unregister PostgreSQL service!"])
+
+//	component.addElevatedOperation("Execute", ["@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "runservice", "-N", "PosgreSQL", "-D", "@TargetDir@/postgreSQL/9.3/data", "-o", "\"-p 9001\"", "errormessage=Could not start PostgreSQL service!"])
+}
+								
+	component.addOperation("Execute", ["{0,1}", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-U", "postgres", "-P", "test123", "-o", "\"-p 9001\"", "start", "-D", "@TargetDir@/postgreSQL/9.3/data", "-l","@TargetDir@/postgreSQL/9.3/log.txt", "UNDOEXECUTE", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-o","\"-p 9001\"", "stop", "-D", "@TargetDir@/postgreSQL/9.3/data","errormessage=Could not start/stop PostgreSQL server!"])
+	component.addOperation("Execute", "@TargetDir@/postgreSQL/9.3/bin/createdb.exe", "-p", "9001", "-U", "postgres", "-E", "UTF8", "-T", "template0", "faocasdata")
 	component.addOperation("Execute", ["{0,1}", "@TargetDir@/postgreSQL/9.3/bin/pg_restore.exe", "-p", "9001", "-U", "postgres", "--dbname=faocasdata", "-C", "@TargetDir@/postgreSQL/9.3/faocasdata.tar","errormessage=There was an error related with the locale; please ignore this"])
+	
+	//component.addOperation("Execute", ["{0,1}", "@TargetDir@/postgreSQL/9.3/bin/pg_ctl.exe", "-U", "postgres", "-P", "test123", "-o", "\"-p 9001\"", "stop", "-D", "@TargetDir@/postgreSQL/9.3/data"])
+	
 
 	
 	

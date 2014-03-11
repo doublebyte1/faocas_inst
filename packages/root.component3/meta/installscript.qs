@@ -52,7 +52,7 @@ Component.prototype.createOperationsForArchive = function(archive)
     // add an extract operation with a modified path
     component.addOperation("Extract", archive, "@HomeDir@");
 	component.addOperation("Move", "@HomeDir@/exaro.exe", "@TargetDir@/faocas_suite/release/exaro.exe")
-	component.addOperation("Move", "@HomeDir@/Report.dll", "@TargetDir@/faocas_suite/release/Report.dll")
+	//component.addOperation("Move", "@HomeDir@/Report.dll", "@TargetDir@/faocas_suite/release/Report.dll")
 	component.addOperation("Mkdir", "@TargetDir@/faocas_suite/PropertyEditor")	
 	component.addOperation("Move", "@HomeDir@/PropertyEditor/BoolProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/BoolProperty.dll")
 	component.addOperation("Move", "@HomeDir@/PropertyEditor/DateProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/DateProperty.dll")	
@@ -73,5 +73,6 @@ Component.prototype.createOperationsForArchive = function(archive)
 	component.addOperation("Move", "@HomeDir@/PropertyEditor/SizeProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/SizeProperty.dll")	
 	component.addOperation("Move", "@HomeDir@/PropertyEditor/TimeProperty.dll", "@TargetDir@/faocas_suite/PropertyEditor/TimeProperty.dll")	
 	component.addOperation("Rmdir", "@HomeDir@/PropertyEditor")
-		
+	component.addOperation( "CreateShortcut", "@TargetDir@/faocas_suite/release/exaro.exe", "@StartMenuDir@/Exaro.lnk" )
+	//component.addOperation("CreateDesktopEntry", "@TargetDir@/faocas_suite/release/exaro.exe", ["Type=Application", "Name=Exaro", "Exec=@TargetDir@/faocas_suite/release/exaro.exe","Terminal=false"]);	
 }

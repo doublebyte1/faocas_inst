@@ -55,6 +55,9 @@ Component.prototype.createOperations = function()
     try {
         // call the base create operations function
         component.createOperations();
+		component.addOperation( "CreateShortcut", "@TargetDir@/faocas_suite/release/confapp.exe", "@StartMenuDir@/FaoCAS Configurator.lnk" )
+		component.addOperation( "CreateShortcut", "@TargetDir@/faocas_suite/release/faocas.exe", "@StartMenuDir@/FaoCAS.lnk" )
+
     } catch (e) {
         print(e);
     }

@@ -55,6 +55,7 @@ Component.prototype.createOperations = function()
     try {
         // call the base create operations function
         component.createOperations();
+		//component.addOperation( "CreateShortcut", "@TargetDir@/uninstall.exe", "@StartMenuDir@/Uninstall FaoCAS.lnk" )		
     } catch (e) {
         print(e);
     }

@@ -15,4 +15,5 @@
     <Script>installscript.qs</Script>
 	<Dependencies>root.component2</Dependencies>
     <ForcedInstallation>false</ForcedInstallation>	
+	<Default>true</Default>
 </Package>
